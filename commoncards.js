@@ -16,8 +16,8 @@ class Commoncards1{
                 }],
                 "actions": [{
                     "type": "Action.Submit",
-                    "title": "Make Insurance Claim",
-                    "value" :"Make Insurance Claim"
+                    "title": "Create Claim",
+                    "value" :"Create Claim"
                             },
                 {
                     "type": "Action.Submit",
