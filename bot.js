@@ -120,7 +120,7 @@ class ABot extends ActivityHandler {
             
                     }
                 break
-                    case "Make Insurance Claim":
+                    case "Create Claim":
                         await this.servicenow2.run(context,this.dialogstate)
                     conversationData.endDialog = await this.servicenow2.isDialogComplete();
                     if(conversationData.endDialog)
