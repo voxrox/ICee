@@ -117,6 +117,11 @@ class Servicenow2 extends ComponentDialog{
 
         body.description=bloburl
         body=JSON.stringify(body)
+        if(step.values.attachment){
+        const addingtoblob=new addattachment()
+        var bloburl=await addingtoblob.AddAttachmenttoblob(step.values.attachment[0].contentUrl,step.values.attachment[0].name)
+        body.description=bloburl}
+        body=JSON.stringify(body)
         try{
             var response=await loginstance.post(url,JSON.parse(body))
             console.log(step.values.attachment)
