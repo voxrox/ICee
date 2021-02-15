@@ -16,11 +16,13 @@ class Commoncards1{
                 }],
                 "actions": [{
                     "type": "Action.Submit",
-                    "title": "Make Insurance Claim"
+                    "title": "Make Insurance Claim",
+                    "value" :"Make Insurance Claim"
                             },
                 {
                     "type": "Action.Submit",
-                    "title": "Get Claim Details"
+                    "title": "Get Claim Details",
+                    "value":"Make Insurance Claim"
                             }
                         ]
         
@@ -51,11 +53,13 @@ class Commoncards1{
 
                 "actions": [{
                     "type": "Action.Submit",
-                    "title": "English/Ingles"
+                    "title": "English/Ingles",
+                    "value": "English"
                             },
                 {
                     "type": "Action.Submit",
-                    "title": "Spanish/Espanol"
+                    "title": "Spanish/Espanol",
+                    "value":"Spanish"
                             }
                         ]
                 
