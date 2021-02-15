@@ -1,4 +1,4 @@
-const string1="If you want to request timeoff or check timeoff details , select TimeOff  option under Applications"
+
 
 const { CardFactory } = require('botbuilder');
 const {WaterfallDialog,ComponentDialog, ThisMemoryScope, AttachmentPrompt}=require('botbuilder-dialogs');
@@ -106,29 +106,39 @@ class Servicenow2 extends ComponentDialog{
         var loginstance = axios.create();
         loginstance.defaults.headers.common['Content-Type']=contentType
         loginstance.defaults.headers.common['Authorization']=usernamepassword1
-        var sattachment=new ServiceNowattachment()
+    
+        
   
         var body={}
         body.summary=step.values.summary
         body.short_description=step.values.description
-        const addingtoblob=new addattachment()
-        var bloburl=await addingtoblob.AddAttachmenttoblob(step.values.attachment[0].contentUrl,step.values.attachment[0].name)
+        
+        
+
         body.description=bloburl
         body=JSON.stringify(body)
         try{
             var response=await loginstance.post(url,JSON.parse(body))
+            console.log(step.values.attachment)
+
+            
+            
+            var incidentsysid=response.data.result.sys_id
+           
+            
+            
+            //return await IncidentAttachment(sysid,textname,texttype,contentdata)
+            if(step.values.attachment){
+            var sattachment=new ServiceNowattachment()
+            const addingtoblob=new addattachment()
+            var bloburl=await addingtoblob.AddAttachmenttoblob(step.values.attachment[0].contentUrl,step.values.attachment[0].name)
             var documentname=step.values.attachment[0].name
             var documenttype=step.values.attachment[0].contentType
             var documenturl=step.values.attachment[0].contentUrl
             var contentdata=await sattachment.getdata(documenturl)
-            
-            
-            var incidentsysid=response.data.result.sys_id
             await sattachment.IncidentAttachment(incidentsysid,documentname,contentdata,documenttype)
+            }
             return await step.context.sendActivity(`Claim has been created with number ${response.data.result.number} in ServiceNow`)
-            
-            //return await IncidentAttachment(sysid,textname,texttype,contentdata)
-
           }
           catch(err){
            await step.context.sendActivity("Sorry, something went wrong.Please try again")
