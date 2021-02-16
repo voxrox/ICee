@@ -84,7 +84,7 @@ class Adaptivecardss
         
           ]
         ticketdetails=JSON.stringify(ticketdetails)  
-        console.log(ticketdetails)
+        //console.log(ticketdetails)
     }
     return ticketdetails
     }
