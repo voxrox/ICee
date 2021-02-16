@@ -72,7 +72,7 @@ class Adaptivecardss
             
             ]
     }
-    if(description==''){
+    if(description!=''){
         ticketdetails=JSON.parse(JSON.stringify(ticketdetails))
         ticketdetails.actions= [
             {
