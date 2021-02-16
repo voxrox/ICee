@@ -112,7 +112,7 @@ class Commoncards1{
     {
         const card = CardFactory.heroCard(
             'Please select any option to proceed further',
-            ['https://wallpaperaccess.com/full/1556608.jpg'],
+            ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Seattle_monorail01_2008-02-25.jpg/1024px-Seattle_monorail01_2008-02-25.jpg'],
             ['Create Claim','Get Claim Details']
        );
        const message = MessageFactory.attachment(card);
