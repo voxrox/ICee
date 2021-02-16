@@ -130,7 +130,7 @@ await context.sendActivity(this.commoncard.commoncard1());
 
             
             default:
-                await context.sendActivity("hello, sorry i cannot understand")
+                await context.sendActivity("")
             break
         }
     }
