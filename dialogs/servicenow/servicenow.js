@@ -63,7 +63,7 @@ class Servicenow extends ComponentDialog{
     }
 
     async getticketdetails(step){
-        console.log(step)
+        //console.log(step)
         var usernamepassword1="Basic YWRtaW46VXhMcEkwdWd4R0Yx"
         var incident=step.result
         endDialog=true
