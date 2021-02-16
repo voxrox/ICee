@@ -112,7 +112,7 @@ class Commoncards1{
     {
         const card = CardFactory.heroCard(
             'Please select any option to proceed further',
-            ['https://'],
+           
             ['Create Claim','Get Claim Details']
        );
        const message = MessageFactory.attachment(card);
