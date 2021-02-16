@@ -65,9 +65,6 @@ class Adaptivecardss
                             "value":"Raghu"
                         }
                     ]
-                },
-                {
-
                 }
             
             ]
