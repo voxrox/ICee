@@ -92,7 +92,7 @@ class Servicenow2 extends ComponentDialog{
     }
     async summarystep(step){
         step.values.attachment=step.result
-        console.log(step.result)
+        //console.log(step.result)
         return await step.prompt(CONFIRM_PROMPT,`Please confirm claim with summary:${step.values.summary},Description : ${step.values.description}`,['Yes','No'])
     }
 
@@ -120,7 +120,7 @@ class Servicenow2 extends ComponentDialog{
         body=JSON.stringify(body)
         try{
             var response=await loginstance.post(url,JSON.parse(body))
-            console.log(step.values.attachment)
+            //console.log(step.values.attachment)
 
             
             
@@ -142,15 +142,15 @@ class Servicenow2 extends ComponentDialog{
             return await step.context.sendActivity(`Claim has been created with number ${response.data.result.number} in ServiceNow`)
           }
           catch(err){
-           await step.context.sendActivity("Sorry, something went wrong.Please try again")
-           return console.log(err)
+           return await step.context.sendActivity("Sorry, something went wrong.Please try again")
+           //return console.log(err)
           }
             
             }
     else{
         endDialog=true
-        await step.context.sendActivity("Cancelled")
-        return await step.endDialog()
+        return await step.context.sendActivity("Cancelled")
+        //return await step.endDialog()
         
     }
         
