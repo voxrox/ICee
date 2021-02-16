@@ -73,7 +73,7 @@ class Servicenow extends ComponentDialog{
         loginstance.defaults.headers.common['Authorization']=usernamepassword1
   
 
-        endDialog=true
+        
         
         try{
             var response=await loginstance.get(url)
@@ -84,7 +84,7 @@ class Servicenow extends ComponentDialog{
             var openedat=response.data.result[0].opened_at
             const card1=new Adaptivecardss()
             const translate=new Translate()
-
+            endDialog=true
             var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
             
             if(description!=''){card123=JSON.parse(card123)}
@@ -100,6 +100,7 @@ class Servicenow extends ComponentDialog{
 
           }
           catch(err){
+              endDialog=true
            return await step.context.sendActivity("please provide valid claim number")
            //return console.log(err)
           }
