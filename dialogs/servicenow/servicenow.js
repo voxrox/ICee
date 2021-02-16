@@ -7,6 +7,7 @@ const{ConfirmPrompt,TextPrompt}=require('botbuilder-dialogs');
 const axios=require('axios')
 const {Adaptivecardss}=require('./adaptivecard1')
 const{Translate}=require('../s/translation')
+//hh
 
 
 
