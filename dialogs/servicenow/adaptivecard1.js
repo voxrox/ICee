@@ -73,6 +73,7 @@ class Adaptivecardss
             ]
     }
     if(description!=''){
+        
         ticketdetails=JSON.parse(JSON.stringify(ticketdetails))
         ticketdetails.actions= [
             {
@@ -84,7 +85,7 @@ class Adaptivecardss
         
           ]
         ticketdetails=JSON.stringify(ticketdetails)  
-        //console.log(ticketdetails)
+        console.log(ticketdetails)
     }
     return ticketdetails
     }
