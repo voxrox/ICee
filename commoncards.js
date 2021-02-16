@@ -112,7 +112,7 @@ class Commoncards1{
     {
         const card = CardFactory.heroCard(
             'Please select any option to proceed further',
-            ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Seattle_monorail01_2008-02-25.jpg/1024px-Seattle_monorail01_2008-02-25.jpg'],
+            ['https://welpmagazine.com/wp-content/uploads/2020/08/BlogFeatureImage-How-Insurance-Companies-Can-Ensure-Customer-Retention-with-ClickDimensions.png'],
             ['Create Claim','Get Claim Details']
        );
        const message = MessageFactory.attachment(card);
