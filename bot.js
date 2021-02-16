@@ -30,7 +30,7 @@ await context.sendActivity(this.commoncard.Welcomecard1());
                 }
             }
             // By calling next() you ensure that the next BotHandler is run.
-            await next();
+            //await next();
         });
         
         this.onDialog(async (context, next) => {
