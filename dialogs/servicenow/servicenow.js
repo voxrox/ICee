@@ -73,7 +73,7 @@ class Servicenow extends ComponentDialog{
         loginstance.defaults.headers.common['Authorization']=usernamepassword1
   
 
-        
+        endDialog=true
         
         try{
             var response=await loginstance.get(url)
@@ -86,7 +86,7 @@ class Servicenow extends ComponentDialog{
             const translate=new Translate()
 
             var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
-            endDialog=true
+            
             if(description!=''){card123=JSON.parse(card123)}
             
             return await step.context.sendActivity({
