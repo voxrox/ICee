@@ -26,10 +26,7 @@ class ABot extends ActivityHandler {
             const membersAdded = context.activity.membersAdded;
             for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
                 if (membersAdded[cnt].id !== context.activity.recipient.id) {
-                    await context.sendActivity({
-
-                        attachments: [CardFactory.adaptiveCard(this.commoncard.Welcomecard())]
-                    });
+await context.sendActivity(this.commoncard.Welcomecard1());
                 }
             }
             // By calling next() you ensure that the next BotHandler is run.
@@ -46,10 +43,7 @@ class ABot extends ActivityHandler {
         this.onMessage(async (context,next)=>{
             if(context.activity.text==("English" || "Spanish")){
                 //this.dialogstate.set(context,{language: context.activity.text});
-                await context.sendActivity({
-
-                    attachments: [CardFactory.adaptiveCard(this.commoncard.Commoncard1())]
-                });
+await context.sendActivity(this.commoncard.commoncard1());
                 
 
             }
@@ -113,10 +107,7 @@ class ABot extends ActivityHandler {
                     
                         await this.previousIntent.set(context,{intentName: null});
                         //await this.dialogstate.set(context,{language: null});
-                        await context.sendActivity({
-
-                            attachments: [CardFactory.adaptiveCard(this.commoncard.Commoncard1())]
-                        });
+await context.sendActivity(this.commoncard.commoncard1());
             
                     }
                 break
@@ -128,10 +119,7 @@ class ABot extends ActivityHandler {
                     
                         await this.previousIntent.set(context,{intentName: null});
                         //await this.dialogstate.set(context,{language: null});
-                        await context.sendActivity({
-
-                            attachments: [CardFactory.adaptiveCard(this.commoncard.Commoncard1())]
-                        });
+await context.sendActivity(this.commoncard.commoncard1());
             
                     }
 
