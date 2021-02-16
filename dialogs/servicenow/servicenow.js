@@ -93,7 +93,7 @@ class Servicenow extends ComponentDialog{
 
                 attachments: [CardFactory.adaptiveCard(card123)]
             });
-            //await step.prompt(TEXT_PROMPT, '');
+            await step.prompt(TEXT_PROMPT, '');
 
 
 
