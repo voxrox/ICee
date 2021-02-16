@@ -99,7 +99,7 @@ class Servicenow extends ComponentDialog{
 
           }
           catch(err){
-           return await step.context.sendActivity("please provide valid claim number")
+           return await step.context.sendActivity(err)
            //return console.log(err)
           }
         
