@@ -87,7 +87,7 @@ class Servicenow extends ComponentDialog{
             //const translate=new Translate()
 
             var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
-            if(description!=""){card123=JSON.parse(card123)}
+            if(description!="-"){card123=JSON.parse(card123)}
             
             return await step.context.sendActivity({
 
