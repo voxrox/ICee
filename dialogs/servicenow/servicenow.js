@@ -99,8 +99,8 @@ class Servicenow extends ComponentDialog{
 
           }
           catch(err){
-           //return await step.context.sendActivity(err)
-           return console.log(err)
+           return await step.context.sendActivity(err)
+           //return console.log(err)
           }
         
 //return await step.context.sendActivity(response);
