@@ -7,7 +7,6 @@ const{ConfirmPrompt,TextPrompt}=require('botbuilder-dialogs');
 const axios=require('axios')
 const {Adaptivecardss}=require('./adaptivecard1')
 const{Translate}=require('../s/translation')
-//hh
 
 
 
@@ -63,17 +62,17 @@ class Servicenow extends ComponentDialog{
     }
 
     async getticketdetails(step){
-        //console.log(step)
+        console.log(step)
         var usernamepassword1="Basic YWRtaW46VXhMcEkwdWd4R0Yx"
         var incident=step.result
         
         var url="https://dev61713.service-now.com/api/now/table/incident?sysparm_query=number%3D"+incident+"&sysparm_limit=1"
-        //var contentType='application/json'
+        var contentType='application/json'
         var loginstance = axios.create();
-        //loginstance.defaults.headers.common['Content-Type']=contentType
+        loginstance.defaults.headers.common['Content-Type']=contentType
         loginstance.defaults.headers.common['Authorization']=usernamepassword1
   
-        endDialog=true
+
         
         
         try{
@@ -84,22 +83,24 @@ class Servicenow extends ComponentDialog{
             var incidentno=response.data.result[0].number
             var openedat=response.data.result[0].opened_at
             const card1=new Adaptivecardss()
-            //const translate=new Translate()
+            const translate=new Translate()
 
             var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
+            endDialog=true
             if(description!=''){card123=JSON.parse(card123)}
             
             return await step.context.sendActivity({
 
                 attachments: [CardFactory.adaptiveCard(card123)]
             });
+            
             //await step.prompt(TEXT_PROMPT, '');
 
 
 
           }
           catch(err){
-           return await step.context.sendActivity("Please provide valid claim number")
+           return await step.context.sendActivity("please provide valid claim number")
            //return console.log(err)
           }
         
