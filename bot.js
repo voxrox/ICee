@@ -130,8 +130,8 @@ await context.sendActivity(this.commoncard.commoncard1());
 
             
             default:
-                //await context.sendActivity("")
-                await context.sendActivity(this.commoncard.commoncard1());
+                await context.sendActivity("")
+                //await context.sendActivity(this.commoncard.commoncard1());
             break
         }
     }
