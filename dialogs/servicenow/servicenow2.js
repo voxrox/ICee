@@ -1,4 +1,4 @@
-
+const string1="If you want to request timeoff or check timeoff details , select TimeOff  option under Applications"
 
 const { CardFactory } = require('botbuilder');
 const {WaterfallDialog,ComponentDialog, ThisMemoryScope, AttachmentPrompt}=require('botbuilder-dialogs');
@@ -113,12 +113,8 @@ class Servicenow2 extends ComponentDialog{
         body.summary=step.values.summary
         body.short_description=step.values.description
         
-        
-
-        body.description=bloburl
-        body=JSON.stringify(body)
         if(step.values.attachment){
-        const addingtoblob=new addattachment()
+            const addingtoblob=new addattachment()
         var bloburl=await addingtoblob.AddAttachmenttoblob(step.values.attachment[0].contentUrl,step.values.attachment[0].name)
         body.description=bloburl}
         body=JSON.stringify(body)
@@ -135,8 +131,8 @@ class Servicenow2 extends ComponentDialog{
             //return await IncidentAttachment(sysid,textname,texttype,contentdata)
             if(step.values.attachment){
             var sattachment=new ServiceNowattachment()
-            const addingtoblob=new addattachment()
-            var bloburl=await addingtoblob.AddAttachmenttoblob(step.values.attachment[0].contentUrl,step.values.attachment[0].name)
+            
+            
             var documentname=step.values.attachment[0].name
             var documenttype=step.values.attachment[0].contentType
             var documenturl=step.values.attachment[0].contentUrl
