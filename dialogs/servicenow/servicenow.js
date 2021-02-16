@@ -84,7 +84,7 @@ class Servicenow extends ComponentDialog{
             var incidentno=response.data.result[0].number
             var openedat=response.data.result[0].opened_at
             const card1=new Adaptivecardss()
-            const translate=new Translate()
+            //const translate=new Translate()
 
             var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
             if(description!=""){card123=JSON.parse(card123)}
