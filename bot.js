@@ -41,7 +41,7 @@ await context.sendActivity(this.commoncard.Welcomecard1());
         });  
 
         this.onMessage(async (context,next)=>{
-            if(context.activity.text==("English" || "Spanish")){
+            if(context.activity.text==('English/Ingles'||'Spanish/Espanol')){
                 //this.dialogstate.set(context,{language: context.activity.text});
 await context.sendActivity(this.commoncard.commoncard1());
                 
