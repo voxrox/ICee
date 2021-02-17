@@ -126,7 +126,7 @@ await context.sendActivity(this.commoncard.commoncard1());
             
             break
                    case "hi":
-                    await context.sendActivity(this.commoncard.commoncard1());
+                    await context.sendActivity("Welcome to ICee Bot");
 
                 break
 
