@@ -95,7 +95,7 @@ await context.sendActivity(this.commoncard.commoncard1());
         }
 
         
-        switch(currentIntent)
+        switch(currentIntent.toLowerCase())
         {
 
                 case "Get Claim Details":
@@ -125,12 +125,16 @@ await context.sendActivity(this.commoncard.commoncard1());
 
             
             break
+                   case "hi":
+                    await context.sendActivity(this.commoncard.commoncard1());
+
+                break
 
            
 
             
             default:
-                await context.sendActivity("")
+                await context.sendActivity("hello, sorry i cannot understand")
                 //await context.sendActivity(this.commoncard.commoncard1());
             break
         }
