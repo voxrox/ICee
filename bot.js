@@ -98,7 +98,7 @@ await context.sendActivity(this.commoncard.commoncard1());
         switch(currentIntent.toLowerCase())
         {
 
-                case "Get Claim Details":
+                case "get claim details":
                     await this.servicenow.run(context,this.dialogstate)
                     conversationData.endDialog = await this.servicenow.isDialogComplete();
                     
@@ -111,7 +111,7 @@ await context.sendActivity(this.commoncard.commoncard1());
             
                     }
                 break
-                    case "Create Claim":
+                    case "create claim":
                         await this.servicenow2.run(context,this.dialogstate)
                     conversationData.endDialog = await this.servicenow2.isDialogComplete();
                     if(conversationData.endDialog)
