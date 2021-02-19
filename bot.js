@@ -107,7 +107,7 @@ await context.sendActivity(this.commoncard.commoncard1());
                     
                         await this.previousIntent.set(context,{intentName: null});
                         //await this.dialogstate.set(context,{language: null});
-await context.sendActivity(this.commoncard.commoncard1());
+await context.sendActivity(this.commoncard.Languagecard());
             
                     }
                 break
@@ -119,7 +119,7 @@ await context.sendActivity(this.commoncard.commoncard1());
                     
                         await this.previousIntent.set(context,{intentName: null});
                         //await this.dialogstate.set(context,{language: null});
-await context.sendActivity(this.commoncard.commoncard1());
+await context.sendActivity(this.commoncard.Languagecard());
             
                     }
 
@@ -135,7 +135,7 @@ await context.sendActivity(this.commoncard.commoncard1());
             
             default:
                 await context.sendActivity("hello, sorry i cannot understand")
-                await context.sendActivity(this.commoncard.commoncard1());
+                await context.sendActivity(this.commoncard.Languagecard());
             break
         }
     }
