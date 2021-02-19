@@ -112,7 +112,7 @@ class Commoncards1{
     {
         const card = CardFactory.heroCard(
             'Please select any option to proceed further',
-            //['https://welpmagazine.com/wp-content/uploads/2020/08/BlogFeatureImage-How-Insurance-Companies-Can-Ensure-Customer-Retention-with-ClickDimensions.png'],
+            ['https://'],
             ['Create Claim','Get Claim Details']
        );
        const message = MessageFactory.attachment(card);
