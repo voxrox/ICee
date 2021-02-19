@@ -61,7 +61,7 @@ class Commoncards1{
     return card        
     }
 
-    Welcomecard123(){
+    Welcomecard1(){
         var welcomeadaptivecard={
             "type": "AdaptiveCard",
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -78,26 +78,14 @@ class Commoncards1{
                         "wrap": true
                     }
                     ]
-                }],
-
-                "actions": [{
-                    "type": "Action.Submit",
-                    "title": "English/Ingles",
-                    "value": "English"
-                            },
-                {
-                    "type": "Action.Submit",
-                    "title": "Spanish/Espanol",
-                    "value":"Spanish"
-                            }
-                        ]
+                }]
                 
         }
         return welcomeadaptivecard
         
     }
 
-    Welcomecard1()
+    Welcomecard1556()
     {
         const card = CardFactory.heroCard(
             'Welcome to ICee Bot, Please select preferred language',
@@ -107,7 +95,16 @@ class Commoncards1{
        const message = MessageFactory.attachment(card);
        return  message
     }
-
+    Languagecard()
+    {
+        const card = CardFactory.heroCard(
+            'Please select preferred language to proceed',
+            ['https://'],
+            ['English/Ingles','Spanish/Espanol']
+       );
+       const message = MessageFactory.attachment(card);
+       return  message
+    }
     commoncard1()
     {
         const card = CardFactory.heroCard(
