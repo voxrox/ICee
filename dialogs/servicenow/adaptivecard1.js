@@ -33,7 +33,7 @@ class Adaptivecardss
                 "type": "Container",
                 "items": [{
                     "type": "TextBlock",
-                    "text": "Claim Details",
+                    "text": "Ticket Details",
                     "wrap": true
                         }
     
@@ -45,7 +45,7 @@ class Adaptivecardss
                     "type": "FactSet",
                     "facts": [
                         {
-                        "title": "Claim ID",
+                        "title": "Ticket ID",
                         "value": incidentno
                         },
                         {
@@ -65,14 +65,12 @@ class Adaptivecardss
                             "value":"Raghu"
                         }
                     ]
-                },
-                {
-
                 }
             
             ]
     }
-    if(description!=""){
+    if(description!=''){
+        
         ticketdetails=JSON.parse(JSON.stringify(ticketdetails))
         ticketdetails.actions= [
             {
@@ -82,10 +80,19 @@ class Adaptivecardss
 
             }
         
-          ]
+          ]}
+        else{
+            ticketdetails=JSON.parse(JSON.stringify(ticketdetails))
+        ticketdetails.actions= [
+            {
+              type: "Action.OpenUrl",
+              title: "No Attachment",
+              url:"No attachment so click on cancel"
+        }]
+    }
         ticketdetails=JSON.stringify(ticketdetails)  
         console.log(ticketdetails)
-    }
+    
     return ticketdetails
     }
 }

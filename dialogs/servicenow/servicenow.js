@@ -8,9 +8,11 @@ const axios=require('axios')
 const {Adaptivecardss}=require('./adaptivecard1')
 const{Translate}=require('../s/translation')
 
-
+var translation=new Translate()
 
 var endDialog=''
+var text2='Please enter ticket number'
+var text3='please provide valid claim number'
 
 const WATERFALL_DIALOG='WATERFALL_DIALOG';
 const CONFIRM_PROMPT='CONFIRM_PROMPT';
@@ -33,7 +35,9 @@ class Servicenow extends ComponentDialog{
     this.initialDialogId=WATERFALL_DIALOG;
     }
 
-    async run(turncontext,stateaccessor){
+    async run(turncontext,stateaccessor,stateaccessor1){
+        text2=await translation.Translationmethod(stateaccessor1.language,text2)
+        text3=await translation.Translationmethod(stateaccessor1.language,text3)
         const dialogSet=new DialogSet(stateaccessor);
         dialogSet.add(this);
         const dialogcontext=await dialogSet.createContext(turncontext);
@@ -54,18 +58,14 @@ class Servicenow extends ComponentDialog{
 
     async firststep(step) {  
         endDialog=false     
-        return await step.prompt(TEXT_PROMPT, 'Please enter claim number');
-        
-
-        
-
+        return await step.prompt(TEXT_PROMPT, text2);
     }
 
     async getticketdetails(step){
         console.log(step)
         var usernamepassword1="Basic YWRtaW46VXhMcEkwdWd4R0Yx"
         var incident=step.result
-        endDialog=true
+        
         var url="https://dev61713.service-now.com/api/now/table/incident?sysparm_query=number%3D"+incident+"&sysparm_limit=1"
         var contentType='application/json'
         var loginstance = axios.create();
@@ -73,8 +73,6 @@ class Servicenow extends ComponentDialog{
         loginstance.defaults.headers.common['Authorization']=usernamepassword1
   
 
-        
-        
         try{
             var response=await loginstance.get(url)
             var state=response.data.result[0].state
@@ -83,23 +81,18 @@ class Servicenow extends ComponentDialog{
             var incidentno=response.data.result[0].number
             var openedat=response.data.result[0].opened_at
             const card1=new Adaptivecardss()
-            const translate=new Translate()
-
-            var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
-            if(description!=""){card123=JSON.parse(card123)}
             
+            var card123=card1.adaptivecard1(state,description,incidentno,openedat,shortdescription)
+            endDialog=true
+            if(description!=''){card123=JSON.parse(card123)}
             return await step.context.sendActivity({
-
                 attachments: [CardFactory.adaptiveCard(card123)]
             });
-            //await step.prompt(TEXT_PROMPT, '');
-
-
-
           }
           catch(err){
-           await step.context.sendActivity("please provide valid claim number")
-           return console.log(err)
+            endDialog=true
+           return await step.context.sendActivity(text3)
+           //return console.log(err)
           }
         
 //return await step.context.sendActivity(response);
