@@ -13,8 +13,7 @@ class ServiceNowattachment
                 
               }
               catch(err){
-                return err
-               //console.log("something went wrong please check1")
+               return console.log("something went wrong please check1")
               }
     }
 
@@ -32,15 +31,14 @@ class ServiceNowattachment
         //body=JSON.stringify(body)
         try{
             var response12=await loginstance.post(url,"dwadaw")
-        //console.log(response12)
+        console.log(response12)
             
-          //  console.log("done")
+            console.log("done")
           }
           catch(err){
-           //console.log("Sorry, something went wrong.Please check11")
-           //console.log(err)
-           //return await console.log("done")
-             return err
+           console.log("Sorry, something went wrong.Please check11")
+           console.log(err)
+           return await console.log("done")
           }
             
 
