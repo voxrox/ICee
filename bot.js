@@ -140,8 +140,9 @@ class ABot extends ActivityHandler {
             
             default:
                 //await context.sendActivity("hello, sorry i cannot understand")
-                await context.sendActivity(translation1.Translationmethod(dialogstate2.language,"Please type 'Get Ticket Details' or 'Create Ticket' in your own words to proceed further"))
-            break
+                var msg=await translation1.Translationmethod(dialogstate2.language,"Please type 'Get Ticket Details' or 'Create Ticket' in your own words to proceed further")
+                await context.sendActivity(msg)
+                break
         }
     }
 }
