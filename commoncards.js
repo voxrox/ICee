@@ -139,7 +139,7 @@ class Commoncards1{
 
         const card = CardFactory.heroCard(
             'Please select language/Por favor seleccione idioma',
-            ['https://'],
+            ['https://ps.w.org/google-language-translator/assets/icon-256x256.png'],
             ['English/Ingles','Spanish/Espanol'],
 
        );
