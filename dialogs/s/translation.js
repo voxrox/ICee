@@ -1,30 +1,70 @@
+const axios=require('axios')
+
 class Translate {
-    Translationmethod(language,text)
+    async Translationmethod(language,text)
     {
-        var apikey="2936ffbe1b80431a99e92d99cbb247e6"
-        endDialog=true
-        var url="https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to="+language
-        var contentType='application/json'
-        var loginstance = axios.create();
-        loginstance.defaults.headers.common['Content-Type']=contentType
-        loginstance.defaults.headers.common['Accept']=contentType
-        loginstance.defaults.headers.common['Ocp-Apim-Subscription-Key']=apikey
-        loginstance.defaults.headers.common['Ocp-Apim-Subscription-Region']="centralindia"
-        var body={ "Text": text}
-        try{
-            var response=loginstance.post(url,body)
-            
-            
-            console.log(response)
+        if(language=="English/Ingles"){
+            language="en"
+        }
+        else{
+            language="es"
+        }
 
+var data = JSON.stringify([{"Text":text}]);
 
-          }
-          catch(err){
-           return "error"
-          }
-    }
+var config = {
+  method: 'post',
+  url: 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to='+language,
+  headers: { 
+    'Ocp-Apim-Subscription-Key': '2936ffbe1b80431a99e92d99cbb247e6', 
+    'Ocp-Apim-Subscription-Region': 'centralindia', 
+    'Content-Type': 'application/json', 
+    'Accept': 'application/json'
+  },
+  data : data
+};
+try{
+var response=await axios(config)
+return response.data[0].translations[0].text
+
+}
+catch(err){
+  console.log('oops! something went wrong')
+}
 }
 
+async Translationmethod2(text,language)
+    {
+        if(language=="English/Ingles"){
+            language="en"
+        }
+        else{
+            language="es"
+        }
+
+var data = JSON.stringify([{"Text":text}]);
+
+var config = {
+  method: 'post',
+  url: 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from='+language+'&to=en',
+  headers: { 
+    'Ocp-Apim-Subscription-Key': '2936ffbe1b80431a99e92d99cbb247e6', 
+    'Ocp-Apim-Subscription-Region': 'centralindia', 
+    'Content-Type': 'application/json', 
+    'Accept': 'application/json'
+  },
+  data : data
+};
+try{
+var response=await axios(config)
+return response.data[0].translations[0].text
+
+}
+catch(err){
+  console.log('oops! something went wrong')
+}
+}
+}
 
 
 module.exports.Translate=Translate;
