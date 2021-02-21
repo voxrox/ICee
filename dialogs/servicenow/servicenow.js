@@ -6,13 +6,14 @@ const{DialogSet,DialogTurnStatus}=require('botbuilder-dialogs');
 const{ConfirmPrompt,TextPrompt}=require('botbuilder-dialogs');
 const axios=require('axios')
 const {Adaptivecardss}=require('./adaptivecard1')
-const{Translate}=require('../s/translation')
+const{Translate}=require('../s/translation');
+const { Commoncards1 } = require('../../commoncards');
 
 var translation=new Translate()
 
 var endDialog=''
-var text2='Please enter ticket number'
-var text3='please provide valid ticket number'
+var language=''
+
 
 const WATERFALL_DIALOG='WATERFALL_DIALOG';
 const CONFIRM_PROMPT='CONFIRM_PROMPT';
@@ -36,8 +37,7 @@ class Servicenow extends ComponentDialog{
     }
 
     async run(turncontext,stateaccessor,stateaccessor1){
-        text2=await translation.Translationmethod(stateaccessor1.language,text2)
-        text3=await translation.Translationmethod(stateaccessor1.language,text3)
+        language=stateaccessor1.language
         const dialogSet=new DialogSet(stateaccessor);
         dialogSet.add(this);
         const dialogcontext=await dialogSet.createContext(turncontext);
@@ -57,8 +57,9 @@ class Servicenow extends ComponentDialog{
     }
 
     async firststep(step) {  
-        endDialog=false     
-        return await step.prompt(TEXT_PROMPT, text2);
+        endDialog=false    
+        var textmsg1=await translation.Translationmethod(language,'Please enter ticket number') 
+        return await step.prompt(TEXT_PROMPT, textmsg1);
     }
 
     async getticketdetails(step){
@@ -91,7 +92,8 @@ class Servicenow extends ComponentDialog{
           }
           catch(err){
             endDialog=true
-           return await step.context.sendActivity(text3)
+            var textmsg2=await translation.Translationmethod(language,'Please enter valid ticket number') 
+           return await step.context.sendActivity(textmsg2)
            //return console.log(err)
           }
         
@@ -100,6 +102,7 @@ class Servicenow extends ComponentDialog{
 
 
     async isDialogComplete(){
+
         return endDialog;
     }
 }
