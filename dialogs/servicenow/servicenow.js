@@ -12,7 +12,7 @@ var translation=new Translate()
 
 var endDialog=''
 var text2='Please enter ticket number'
-var text3='please provide valid claim number'
+var text3='please provide valid ticket number'
 
 const WATERFALL_DIALOG='WATERFALL_DIALOG';
 const CONFIRM_PROMPT='CONFIRM_PROMPT';
