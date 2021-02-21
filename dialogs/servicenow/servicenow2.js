@@ -12,16 +12,7 @@ const {Translate}=require('../s/translation')
 
 
 var endDialog=''
-var text1='Please enter summary of the ticket'
-var text2='Please enter description of the ticket'
-var text3='Do you want to add attachment ?'
-var text4='Please add the attachment for the ticket'
-var text5='Please confirm the summary and description provided before creating the ticket'
-var text6='Ticket has been created in ServiceNow with number'
-var text7='Sorry, something went wrong.Please try again'
-var text8='Cancelled'
-var testyes='Yes'
-var testno='No'
+var language=''
 
 var translation=new Translate()
 
@@ -54,16 +45,7 @@ class Servicenow2 extends ComponentDialog{
     }
 
     async run(turncontext,stateaccessor,stateaccessor1){
-        text1=await translation.Translationmethod(stateaccessor1.language,text1)
-        text2=await translation.Translationmethod(stateaccessor1.language,text2)
-        text3=await translation.Translationmethod(stateaccessor1.language,text3)
-        text4=await translation.Translationmethod(stateaccessor1.language,text4)
-        text5=await translation.Translationmethod(stateaccessor1.language,text5)
-        text6= await translation.Translationmethod(stateaccessor1.language,text6)
-        text7=await translation.Translationmethod(stateaccessor1.language,text7)
-        text8=await translation.Translationmethod(stateaccessor1.language,text8)
-        testyes=await translation.Translationmethod(stateaccessor1.language,testyes)
-        testno=await translation.Translationmethod(stateaccessor1.language,testno)
+        language=stateaccessor1.language
         const dialogSet=new DialogSet(stateaccessor);
         dialogSet.add(this);
         const dialogcontext=await dialogSet.createContext(turncontext);
@@ -82,25 +64,32 @@ class Servicenow2 extends ComponentDialog{
     
     async firststep(step) 
     {  
-        endDialog=false     
-        return await step.prompt(TEXT_PROMPT, text1);
+        endDialog=false
+        var textmsg1=await translation.Translationmethod(language,'Please enter summary of the ticket') 
+        return await step.prompt(TEXT_PROMPT, textmsg1);    
+  
     }
 
     async getdescription(step)
     {
         step.values.summary=step.result
-        return await step.prompt(TEXT_PROMPT,text2)
+        var textmsg2=await translation.Translationmethod(language,'Please enter description of the ticket') 
+        return await step.prompt(TEXT_PROMPT, textmsg2);    
+        
     }
 
     async getattachment(step){
         step.values.description=step.result
-        return await step.prompt(CONFIRM_PROMPT,text3,[testyes,testno])
+        var textmsg3=await translation.Translationmethod(language,'Do you want to add attachment ?',['Yes','No']) 
+        return await step.prompt(CONFIRM_PROMPT, textmsg3);
+        
     }
 
     async getattachment2(step){
         if(step.result==true)
         {
-            return await step.prompt(ATTACHMENT_PROMPT,text4)
+            var textmsg4=await translation.Translationmethod(language,'Please add the attachment for the ticket') 
+            return await step.prompt(ATTACHMENT_PROMPT, textmsg4);
 
         }
         else
@@ -111,7 +100,9 @@ class Servicenow2 extends ComponentDialog{
     async summarystep(step){
         step.values.attachment=step.result
         console.log(step.result)
-        return await step.prompt(CONFIRM_PROMPT,`${text5}:${step.values.summary} \n ,${step.values.description}`,[testyes,testno])
+        var textmsg5=await translation.Translationmethod(language,'Please confirm the summary and description provided by you before creating the ticket') 
+        return await step.prompt(CONFIRM_PROMPT, `${textmsg5}:${step.values.summary} \n ,${step.values.description}`,['Yes','No']);
+        
     }
 
     async finalstep(step)
@@ -146,17 +137,21 @@ class Servicenow2 extends ComponentDialog{
             var contentdata=await sattachment.getdata(documenturl)
             await sattachment.IncidentAttachment(incidentsysid,documentname,contentdata,documenttype)
             }
-            return await step.context.sendActivity(`${text6} ${response.data.result.number}`)
+            var textmsg6=await translation.Translationmethod(language,'Ticket has been created in ServiceNow with number')  
+            return await step.context.sendActivity(`${textmsg6} ${response.data.result.number}`)
           }
           catch(err){
-           return await step.context.sendActivity(text7)
+            var textmsg7=await translation.Translationmethod(language,'Sorry something went wrong please try again')  
+            return await step.context.sendActivity(textmsg7)
+           
            //return console.log(err)
           }
             
             }
     else{
         endDialog=true
-        await step.context.sendActivity(text8)
+        var textmsg8=await translation.Translationmethod(language,'Cancelled')  
+        await step.context.sendActivity(textmsg8 )
         return await step.endDialog()
     }
     }
