@@ -87,7 +87,7 @@ class Servicenow extends ComponentDialog{
             endDialog=true
             if(description!=''){card123=JSON.parse(card123)}
             return await step.context.sendActivity({
-                attachments: [CardFactory.adaptiveCard(card123)]
+                attachments: [CardFactory.adaptiveCard(JSON.parse(card123))]
             });
           }
           catch(err){
