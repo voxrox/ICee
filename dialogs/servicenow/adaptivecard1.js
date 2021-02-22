@@ -81,15 +81,7 @@ class Adaptivecardss
             }
         
           ]}
-        else{
-            ticketdetails=JSON.parse(JSON.stringify(ticketdetails))
-        ticketdetails.actions= [
-            {
-              type: "Action.OpenUrl",
-              title: "No Attachment",
-              url:"No attachment so click on cancel"
-        }]
-    }
+
         ticketdetails=JSON.stringify(ticketdetails)  
         console.log(ticketdetails)
     
