@@ -1,6 +1,6 @@
 const { CardFactory } = require('botbuilder');
 const {WaterfallDialog,ComponentDialog, ThisMemoryScope, AttachmentPrompt}=require('botbuilder-dialogs');
-
+const {QnAMaker}  = require('botbuilder-ai');
 const{DialogSet,DialogTurnStatus}=require('botbuilder-dialogs');
 
 const{ConfirmPrompt,TextPrompt}=require('botbuilder-dialogs');
@@ -8,12 +8,15 @@ const axios=require('axios')
 const {ServiceNowattachment}=require('./servicenowattachment')
 const {addattachment}=require('../s/addatchment')
 const {Translate}=require('../s/translation')
-
+const qnaMaker = new QnAMaker({
+    knowledgeBaseId: "ced419d3-b189-448d-8895-44bfe5b782f1",
+    endpointKey: "5cfb3b68-4193-4f72-8293-4112c67897f0",
+    host: "https://testdata1z.azurewebsites.net/qnamaker"
+});
 
 
 var endDialog=''
 var language=''
-
 var translation=new Translate()
 
 
@@ -32,6 +35,9 @@ class Servicenow2 extends ComponentDialog{
         this.addDialog(new AttachmentPrompt(ATTACHMENT_PROMPT));
     
     this.addDialog(new WaterfallDialog(WATERFALL_DIALOG,[
+        this.initialstep.bind(this),
+        this.initialstep2.bind(this),
+        this.initialstep3.bind(this),
         this.firststep.bind(this),
         this.getdescription.bind(this),
         this.getattachment.bind(this),
@@ -61,10 +67,44 @@ class Servicenow2 extends ComponentDialog{
     }
 
     }
-    
+    async initialstep(step)
+    {
+        endDialog=false
+        var textmsg=await translation.Translationmethod(language,'Please enter your query')
+        return await step.prompt(TEXT_PROMPT,textmsg)
+    }
+    async initialstep2(step)
+    {
+        var textmsgz=await translation.Translationmethod2(step.result,language)
+        step.context.text=textmsgz
+        var result =await qnaMaker.getAnswers(step.context)
+        if(result[0]==null)
+        {
+            step.context.sendActivity("I didn't get it,let's proceed further to create ticket")
+            return await step.next()   
+        }
+        else{
+        var textmsga=await translation.Translationmethod(language,result[0].answer)
+        await step.context.sendActivity(textmsga);
+        var textmsgz1=await translation.Translationmethod(language,'Does this answers your query')
+        return await step.prompt(CONFIRM_PROMPT,textmsgz1,['Yes','No'])
+        }
+    }
+    async initialstep3(step)
+    {
+        if(step.result==true)
+        {
+            endDialog=true
+            return await step.endDialog()
+        }
+        else
+        {
+            return await step.next()   
+        }
+    }
     async firststep(step) 
     {  
-        endDialog=false
+        
         var textmsg1=await translation.Translationmethod(language,'Please enter summary of the ticket') 
         return await step.prompt(TEXT_PROMPT, textmsg1);    
   
@@ -80,8 +120,8 @@ class Servicenow2 extends ComponentDialog{
 
     async getattachment(step){
         step.values.description=step.result
-        var textmsg3=await translation.Translationmethod(language,'Do you want to add attachment ?',['Yes','No']) 
-        return await step.prompt(CONFIRM_PROMPT, textmsg3);
+        var textmsg3=await translation.Translationmethod(language,'Do you want to add attachment ?') 
+        return await step.prompt(CONFIRM_PROMPT, textmsg3,['Yes','No']);
         
     }
 
