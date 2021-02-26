@@ -122,7 +122,7 @@ class ABot extends ActivityHandler {
                     
                         await this.previousIntent.set(context,{intentName: null});
                         this.dialogstate.set(context,{language: null});
-                        context.sendActivity("Thank you for using the bot 🙂")
+                        await context.sendActivity("Thank you for using the bot 🙂")
                         context.sendActivity(this.commoncard.Welcomecard1())
             
                     }
@@ -135,7 +135,7 @@ class ABot extends ActivityHandler {
                     
                         await this.previousIntent.set(context,{intentName: null});
                         this.dialogstate.set(context,{language: null});
-                        context.sendActivity("Thank you for using the bot 🙂")
+                        await context.sendActivity("Thank you for using the bot 🙂")
                         await context.sendActivity(this.commoncard.Welcomecard1())
                     }
             break
