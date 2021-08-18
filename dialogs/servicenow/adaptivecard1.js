@@ -59,10 +59,6 @@ class Adaptivecardss
                         {
                         "title": "Opened at",
                         "value": openedat+" UTC"
-                        },
-                        {
-                            "title":"Registered by",
-                            "value":"Raghu"
                         }
                     ]
                 }
