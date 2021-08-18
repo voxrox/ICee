@@ -80,7 +80,7 @@ class Servicenow2 extends ComponentDialog{
         var result =await qnaMaker.getAnswers(step.context)
         if(result[0]==null)
         {
-            step.context.sendActivity("I didn't get it,let's proceed further to create ticket")
+            step.context.sendActivity("Sorry I am not able to understand,let's proceed further to create ticket")
             return await step.next()   
         }
         else{
