@@ -148,7 +148,7 @@ class Servicenow2 extends ComponentDialog{
     async finalstep(step)
     {
         if(step.result==true){
-        var usernamepassword1="Basic YWRtaW46eWJhSnQ4dUpJVkI0"
+        var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
         endDialog=true
         var url="https://dev92108.service-now.com/api/now/table/incident"
         var contentType='application/json'
