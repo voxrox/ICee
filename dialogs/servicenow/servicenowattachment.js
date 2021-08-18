@@ -19,7 +19,7 @@ class ServiceNowattachment
 
     async IncidentAttachmentdw(incidentsysid,documentname,contentdata,documenttype)
     {
-        var usernamepassword1="Basic YWRtaW46VXhMcEkwdWd4R0Yx"
+        var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
         var url="https://dev61713.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id="+incidentsysid+"&file_name="+documentname
         var contentType=documenttype
         var loginstance = axios.create();
@@ -53,7 +53,7 @@ var config = {
   method: 'post',
   url: 'https://dev61713.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id='+incidentsysid+'&file_name='+documentname,
   headers: { 
-    'Authorization': 'Basic YWRtaW46VXhMcEkwdWd4R0Yx', 
+    'Authorization': 'Basic YWRtaW46NGV3Q3BZeWU4T1VZ', 
     'Content-Type': documenttype, 
     'Cookie': 'glide_user_route=glide.c281e10044e269a6a099f08d79b8b21e; BIGipServerpool_dev61713=2827245322.4929.0000; glide_user_activity=U0N2MzpXOU94a3pYM0VDNTVPR1RCZTY4eDJMVytTWitCQmlBZDo3Y0M2b2RDZytiTUJRdE5Jczdsc2NnbSt5NU91a1R0enZ0Z3FsWEYyYXB3PQ==; JSESSIONID=BB393E69A56BD84DA98CD1A759E33384; glide_session_store=2F0B8B92071220108472FD908C1ED061'
   },
