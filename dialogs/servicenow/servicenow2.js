@@ -150,7 +150,7 @@ class Servicenow2 extends ComponentDialog{
         if(step.result==true){
         var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
         endDialog=true
-        var url="https://dev92108.service-now.com/api/now/table/incident"
+        var url="https://dev91019.service-now.com/api/now/table/incident"
         var contentType='application/json'
         var loginstance = axios.create();
         loginstance.defaults.headers.common['Content-Type']=contentType
