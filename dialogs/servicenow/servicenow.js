@@ -64,7 +64,7 @@ class Servicenow extends ComponentDialog{
 
     async getticketdetails(step){
         console.log(step)
-        var usernamepassword1="Basic YWRtaW46eWJhSnQ4dUpJVkI0"
+        var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
         var incident=step.result
         
         var url="https://dev92108.service-now.com/api/now/table/incident?sysparm_query=number%3D"+incident+"&sysparm_limit=1"
