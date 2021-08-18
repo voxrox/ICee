@@ -20,7 +20,7 @@ class ServiceNowattachment
     async IncidentAttachmentdw(incidentsysid,documentname,contentdata,documenttype)
     {
         var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
-        var url="https://dev61713.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id="+incidentsysid+"&file_name="+documentname
+        var url="https://dev91019.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id="+incidentsysid+"&file_name="+documentname
         var contentType=documenttype
         var loginstance = axios.create();
         loginstance.defaults.headers.common['Content-Type']=contentType
@@ -51,7 +51,7 @@ var data = contentdata;
 
 var config = {
   method: 'post',
-  url: 'https://dev61713.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id='+incidentsysid+'&file_name='+documentname,
+  url: 'https://dev91019.service-now.com/api/now/attachment/file?table_name=incident&table_sys_id='+incidentsysid+'&file_name='+documentname,
   headers: { 
     'Authorization': 'Basic YWRtaW46NGV3Q3BZeWU4T1VZ', 
     'Content-Type': documenttype, 
