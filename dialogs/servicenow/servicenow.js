@@ -64,10 +64,10 @@ class Servicenow extends ComponentDialog{
 
     async getticketdetails(step){
         console.log(step)
-        var usernamepassword1="Basic YWRtaW46NGV3Q3BZeWU4T1VZ"
+        var usernamepassword1="Basic YWRtaW46ZHFJV09hdEowbTNP"
         var incident=step.result
         
-        var url="https://dev91019.service-now.com/api/now/table/incident?sysparm_query=number%3D"+incident+"&sysparm_limit=1"
+        var url="https://dev108821.service-now.com/api/now/table/incident?sysparm_query=number%3D"+incident+"&sysparm_limit=1"
         var contentType='application/json'
         var loginstance = axios.create();
         loginstance.defaults.headers.common['Content-Type']=contentType
